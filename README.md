@@ -26,7 +26,7 @@ Lightweight utility for decoding function parameters and function output from Tr
 ## Installation
 
 ```bash
-npm i tron-tx-decoder
+npm i @beycandeveloper/tron-tx-decoder
 ```
 
 ### Initialization
