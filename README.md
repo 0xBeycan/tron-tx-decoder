@@ -4,7 +4,9 @@
 
 ## tron-tx-decoder
 
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) ![npm](https://img.shields.io/npm/v/@beycandeveloper/tron-tx-decoder) ![npm bundle size](https://img.shields.io/bundlephobia/min/@beycandeveloper/tron-tx-decoder) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) 
+![npm](https://img.shields.io/npm/v/@beycandeveloper/tron-tx-decoder) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
 
 Lightweight utility for decoding function parameters and function output from Tron blocklchain transactions.
 
