@@ -4,7 +4,7 @@
 
 ## tron-tx-decoder
 
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) ![npm](https://img.shields.io/npm/v/tron-tx-decoder) ![npm bundle size](https://img.shields.io/bundlephobia/min/tron-tx-decoder) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) ![npm](https://img.shields.io/npm/v/@beycandeveloper/tron-tx-decoder) ![npm bundle size](https://img.shields.io/bundlephobia/min/@beycandeveloper/tron-tx-decoder) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
 
 Lightweight utility for decoding function parameters and function output from Tron blocklchain transactions.
 
@@ -32,8 +32,7 @@ npm i tron-tx-decoder
 ```js
 const TronTxDecoder = require('tron-tx-decoder');
 
-const decoder = new TronTxDecoder({ mainnet: true });
-// { mainnet: false } for testnet
+const decoder = new TronTxDecoder(node /* https://api.trongrid.io */);
 ```
 
 ### Decode Input:
@@ -118,9 +117,9 @@ decodeRevertMessage("5d6db71f3316a2abdf7f08f97cd42880209ee7344816d404ce865a8679b
 
 ## Changelog
 
-- [Changelog](https://github.com/meetsiraja/tron-tx-decoder/blob/master/CHANGELOG.md)
+- [Changelog](https://github.com/BeycanDeveloper/tron-tx-decoder/blob/master/CHANGELOG.md)
 
 ## Licence
 
-[MIT](https://github.com/meetsiraja/tron-tx-decoder/blob/master/LICENCE.md)
+[MIT](https://github.com/BeycanDeveloper/tron-tx-decoder/blob/master/LICENCE.md)
 
