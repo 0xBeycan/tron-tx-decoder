@@ -1,5 +1,6 @@
 {
-  "name": "tron-tx-decoder",
+  "namespace": "beycandeveloper",
+  "name": "@beycandeveloper/tron-tx-decoder",
   "version": "2.0.2",
   "description": "Lightweight utility for decoding function parameters and function output from Tron blocklchain transactions.",
   "license": "MIT",
@@ -27,13 +28,13 @@
     "tx"],  
   "repository": {
     "type" : "git",
-    "url" : "https://github.com/meetsiraja/tron-tx-decoder.git"
+    "url" : "https://github.com/BeycanDeveloper/tron-tx-decoder.git"
   },
   "bugs": {
-    "url": "https://github.com/meetsiraja/tron-tx-decoder/issues"
+    "url": "https://github.com/BeycanDeveloper/tron-tx-decoder/issues"
   },
-  "homepage": "https://github.com/meetsiraja/tron-tx-decoder",
-  "author": "https://github.com/meetsiraja",
+  "homepage": "https://github.com/BeycanDeveloper/tron-tx-decoder",
+  "author": "https://github.com/BeycanDeveloper",
   "main": "decoder.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

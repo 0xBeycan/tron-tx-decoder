@@ -1,22 +1,19 @@
 const axios = require('axios')
 const { utils } = require('ethers')
 
-const MAINNET_NODE = 'https://api.trongrid.io';
-const TESTNET_NODE = 'https://api.shasta.trongrid.io'
-
 class TronTxDecoder {
 
     /**
      * Create a TronTxDecoder object
      *
-     * @param {Object} config the rootchain configuration object
+     * @param {String} node the rootchain configuration string
      * @param {Web3} config.web3 a web3 instance
      * @param {string} config.plasmaContractAddress the address of the PlasmaFramework contract
      * @return {TronTxDecoder} a TronWeb object
      *
      */
-    constructor ({ mainnet }) {
-        mainnet ? this.tronNode = MAINNET_NODE : this.tronNode = TESTNET_NODE;
+    constructor (node) {
+        this.tronNode = node;
         // (this.tronWeb, this.tronNode) = initTronWeb(mainnet);
     }
 
