@@ -32,7 +32,7 @@ npm i @beycandeveloper/tron-tx-decoder
 ### Initialization
 
 ```js
-const TronTxDecoder = require('tron-tx-decoder');
+const TronTxDecoder = require('@beycandeveloper/tron-tx-decoder');
 
 const decoder = new TronTxDecoder(node /* https://api.trongrid.io */);
 ```

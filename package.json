@@ -1,7 +1,7 @@
 {
   "namespace": "beycandeveloper",
   "name": "@beycandeveloper/tron-tx-decoder",
-  "version": "2.0.3",
+  "version": "2.0.5",
   "description": "Lightweight utility for decoding function parameters and function output from Tron blocklchain transactions.",
   "license": "MIT",
   "keywords": [
