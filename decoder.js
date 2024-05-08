@@ -158,8 +158,10 @@ class TronTxDecoder {
                     });
                 } else {
                     decodedLogs.push({
-                        event: "unknown",
-                        data: log.data
+                        eventName: 'unknown',
+                        inputNames: [],
+                        inputTypes: [],
+                        decodedInput: { _length: 0 }
                     });
                 }
             }
