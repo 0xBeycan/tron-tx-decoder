@@ -124,6 +124,51 @@ class TronTxDecoder {
         }
     }
 
+    async decodeLogsById(transactionID) {
+        try{
+            let transaction = await _getTransaction(transactionID, this.tronNode);
+            let contractAddress = transaction.raw_data.contract[0].parameter.value.contract_address;
+            if(contractAddress === undefined)
+                throw 'No Contract found for this transaction hash.';
+            let abi = await _getContractABI(contractAddress, this.tronNode);
+            let info = await _getTransactionInfo(transactionID, this.tronNode);
+            let events = abi.filter(i => i.type === 'Event');
+            let hexEvents = events.map(event => {
+                let types = event.inputs.map(({type}) => type);
+                let names = event.inputs.map(({name}) => name);
+                let hexName = _genMethodId(event.name, types);
+                return Object.assign(event, {
+                    hexName,
+                    types,
+                    names
+                })
+            });
+            let decodedLogs = [];
+            for(let i=0; i<info.log.length; i++){
+                let log = info.log[i];
+                let eventId = log.topics[0].substring(0, 8);
+                let event = hexEvents.find(event => event.hexName === eventId);
+                if (event) {
+                    let decodedInput = utils.defaultAbiCoder.decode(event.types, "0x" + log.data);
+                    decodedLogs.push({
+                        eventName: event.name,
+                        inputNames: event.names,
+                        inputTypes: event.types,
+                        decodedInput: Object.assign({}, decodedInput)
+                    });
+                } else {
+                    decodedLogs.push({
+                        event: "unknown",
+                        data: log.data
+                    });
+                }
+            }
+            return decodedLogs;
+        }catch(err){
+            throw new Error(err)
+        }
+    }
+
     /**
      * Decode revert message from the transaction hash (if any)
      *
@@ -167,6 +212,17 @@ class TronTxDecoder {
 async function _getTransaction(transactionID, tronNode){
     try{
         const transaction = await axios.post(`${tronNode}/wallet/gettransactionbyid`, { value: transactionID});
+        if (!Object.keys(transaction.data).length)
+            throw 'Transaction not found';
+        return transaction.data
+    }catch(error){
+        throw error;
+    }
+}
+
+async function _getTransactionInfo(transactionID, tronNode){
+    try{
+        const transaction = await axios.post(`${tronNode}/wallet/gettransactioninfobyid`, { value: transactionID});
         if (!Object.keys(transaction.data).length)
             throw 'Transaction not found';
         return transaction.data
