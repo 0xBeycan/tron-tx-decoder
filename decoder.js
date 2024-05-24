@@ -124,8 +124,19 @@ class TronTxDecoder {
         }
     }
 
+    decodeLog(types, data) {
+        return utils.defaultAbiCoder.decode(types, "0x" + data);
+    }
+
     async decodeLogsById(transactionID) {
         try{
+            const unknownLog = {
+                eventName: 'unknown',
+                inputNames: [],
+                inputTypes: [],
+                decodedInput: { _length: 0 }
+            }
+
             let transaction = await _getTransaction(transactionID, this.tronNode);
             let contractAddress = transaction.raw_data.contract[0].parameter.value.contract_address;
             if(contractAddress === undefined)
@@ -134,6 +145,7 @@ class TronTxDecoder {
             let info = await _getTransactionInfo(transactionID, this.tronNode);
             let events = abi.filter(i => i.type === 'Event');
             let hexEvents = events.map(event => {
+                if (!event.inputs) return;
                 let types = event.inputs.map(({type}) => type);
                 let names = event.inputs.map(({name}) => name);
                 let hexName = _genMethodId(event.name, types);
@@ -142,30 +154,35 @@ class TronTxDecoder {
                     types,
                     names
                 })
-            });
+            }).filter(i => i !== undefined);
             let decodedLogs = [];
+            const createEvent = (event, decodedInput) => {
+                decodedLogs.push({
+                    eventName: event.name,
+                    inputNames: event.names,
+                    inputTypes: event.types,
+                    decodedInput: Object.assign({}, decodedInput)
+                });
+            }
             for(let i=0; i<info.log.length; i++){
                 let log = info.log[i];
                 let eventId = log.topics[0].substring(0, 8);
                 let event = hexEvents.find(event => event.hexName === eventId);
                 if (event) {
-                    let decodedInput = utils.defaultAbiCoder.decode(event.types, "0x" + log.data);
-                    decodedLogs.push({
-                        eventName: event.name,
-                        inputNames: event.names,
-                        inputTypes: event.types,
-                        decodedInput: Object.assign({}, decodedInput)
-                    });
+                    const decode = (types) => {
+                        try {
+                            const decodedInput = this.decodeLog(types, log.data);
+                            decodedLogs.push(createEvent(event, decodedInput));
+                        } catch (error) {
+                            decode([types[2]]);
+                        }
+                    }
+                    decode(event.types);
                 } else {
-                    decodedLogs.push({
-                        eventName: 'unknown',
-                        inputNames: [],
-                        inputTypes: [],
-                        decodedInput: { _length: 0 }
-                    });
+                    decodedLogs.push(unknownLog);
                 }
             }
-            return decodedLogs;
+            return decodedLogs.filter(i => i !== undefined);
         }catch(err){
             throw new Error(err)
         }

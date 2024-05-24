@@ -63,6 +63,28 @@ decodeTxInput("0c739761b34a891b3bbecd528302de827736660d76c62dacf8d3a9ebe7dade08"
 }
 ```
 
+### Decode Logs:
+Decode function input parameters by passing transaction id.
+```js
+async function decodeLogsByTxId(txId){
+    return await decoder.decodeLogsById(txId);
+}
+
+decodeLogsByTxId("0c739761b34a891b3bbecd528302de827736660d76c62dacf8d3a9ebe7dade08");
+```
+#### Output:
+```js
+{ 
+    eventName: 'Transfer',
+    logNames: [ 'from', 'to', 'value' ],
+    logTypes: [ 'address', 'address', 'uint256' ],
+    decodedLogs: { 
+        '0': BigNumber { _hex: '0x265aa6' },
+        _length: 1
+    }
+}
+```
+
 ### Decode Output:
 Decode function outputs by passing transaction id.
 
