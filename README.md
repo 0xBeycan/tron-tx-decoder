@@ -5,7 +5,7 @@
 ## tron-tx-decoder
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) 
-![npm](https://img.shields.io/npm/v/@beycandeveloper/tron-tx-decoder) 
+![npm](https://img.shields.io/npm/v/@beycan/tron-tx-decoder) 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
 
 Lightweight utility for decoding function parameters and function output from Tron blocklchain transactions.
@@ -26,13 +26,13 @@ Lightweight utility for decoding function parameters and function output from Tr
 ## Installation
 
 ```bash
-npm i @beycandeveloper/tron-tx-decoder
+npm i @beycan/tron-tx-decoder
 ```
 
 ### Initialization
 
 ```js
-const TronTxDecoder = require('@beycandeveloper/tron-tx-decoder');
+const TronTxDecoder = require('@beycan/tron-tx-decoder');
 
 const decoder = new TronTxDecoder(node /* https://api.trongrid.io */);
 ```
@@ -141,9 +141,9 @@ decodeRevertMessage("5d6db71f3316a2abdf7f08f97cd42880209ee7344816d404ce865a8679b
 
 ## Changelog
 
-- [Changelog](https://github.com/BeycanDeveloper/tron-tx-decoder/blob/master/CHANGELOG.md)
+- [Changelog](https://github.com/0xBeycan/tron-tx-decoder/blob/master/CHANGELOG.md)
 
 ## Licence
 
-[MIT](https://github.com/BeycanDeveloper/tron-tx-decoder/blob/master/LICENCE.md)
+[MIT](https://github.com/0xBeycan/tron-tx-decoder/blob/master/LICENCE.md)
 

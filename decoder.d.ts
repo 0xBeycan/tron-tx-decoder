@@ -1,4 +1,4 @@
-declare module '@beycandeveloper/tron-tx-decoder' {
+declare module '@beycan/tron-tx-decoder' {
     interface Transaction {
         raw_data: {
             contract: {
